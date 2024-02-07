@@ -51,4 +51,15 @@ class User extends Authenticatable
     public function doctorSchedules() : HasMany {
         return $this->hasMany(DoctorSchedule::class);
     }
+
+    /**
+     * Relations with Appointment Model
+     */
+    public function patientAppointments() : HasMany {
+        return $this->hasMany(Appointment::class);
+    }
+
+    public function doctorAppointments() : HasMany {
+        return $this->hasMany(Appointment::class);
+    }
 }
