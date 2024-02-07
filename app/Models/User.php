@@ -53,7 +53,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Relations with Appointment Model
+     * Relations with Appointment Model.
      */
     public function patientAppointments() : HasMany {
         return $this->hasMany(Appointment::class);
@@ -61,5 +61,16 @@ class User extends Authenticatable
 
     public function doctorAppointments() : HasMany {
         return $this->hasMany(Appointment::class);
+    }
+
+    /**
+     * Relations with MedicalHistory Model.
+     */
+    public function patientHistory() : HasMany {
+        return $this->hasMany(MedicalHistory::class);
+    }
+
+    public function medicHistory() : HasMany {
+        return $this->hasMany(MedicalHistory::class);
     }
 }
