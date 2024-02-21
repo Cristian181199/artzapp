@@ -22,6 +22,9 @@
                                     <th scope="col" class="px-6 py-3">
                                         Role permissions
                                     </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Actions
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -32,17 +35,15 @@
                                         </th>
                                         <td class="px-6 py-4">
                                             @forelse ($role->permissions as $role_permission)
-                                                {{ $role_permission->name }}
+                                                {{ $role_permission->name . ', ' }}
                                              @empty
                                                 This role does not have any permissions yet
                                             @endforelse
+                                        </td>
+                                        <td>
+                                            <a href="" type="button" class=" text-white bg-yellow-500 hover:bg-yellow-600 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">Edit</a>
+                                            <a href="" type="button" class=" text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Delete</a>
 
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            Laptop
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            $2999
                                         </td>
                                     </tr>
                                 @endforeach
@@ -50,7 +51,9 @@
                         </table>
                     </div>
 
-
+                </div>
+                <div class="pl-6">
+                    <a href="{{ route('roles.create') }}" type="button" class=" text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Create</a>
                 </div>
             </div>
         </div>

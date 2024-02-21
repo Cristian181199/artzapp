@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreRoleRequest;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -11,28 +14,38 @@ class RoleController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
         return view('roles.index', [
-            'roles' => Role::all(),
-            'permisos' => Permission::all(),
+            'roles' => Role::with('permissions')->get(),
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
-        //
+        return view('roles.create', [
+            'permissions' => Permission::all(),
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreRoleRequest $request): RedirectResponse
     {
-        //
+        $role = Role::create([
+            'name' => $request->name,
+            'guard_name' => 'web'
+        ]);
+
+        if ($request->permissions_checked != null || !empty($request->permissions_checked)) {
+            $role->givePermissionTo($request->permissions_checked);
+        }
+
+        return redirect()->route('roles.index');
     }
 
     /**

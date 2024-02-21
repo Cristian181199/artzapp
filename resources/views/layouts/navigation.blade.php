@@ -15,6 +15,11 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
+                    <!-- NavLink for Role's CRUD. This should only be seen by the administrator. -->
+                    <x-nav-link :href="route('roles.index')" :active="request()->routeIs('roles.index')">
+                        {{ __('Roles') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -69,6 +74,11 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+
+            <!-- Responsive_Nav_Link for Role's CRUD. This should only be seen by the administrator. -->
+            <x-responsive-nav-link :href="route('roles.index')" :active="request()->routeIs('roles.index')">
+                {{ __('Roles') }}
             </x-responsive-nav-link>
         </div>
 
